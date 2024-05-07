@@ -19,9 +19,9 @@ class ListNode {
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int carry = 0;
         ListNode result = new ListNode(0);
-
+        
+        int carry = 0;
         ListNode c1 = l1;
         ListNode c2 = l2;
         ListNode currNode = result;
