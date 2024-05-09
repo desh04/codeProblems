@@ -39,5 +39,20 @@ var findMedianSortedArrays = function (nums1, nums2) {
   }
 };
 
+var findMedianSortedArrays2 = function (nums1, nums2) {
+  let s1 = 0;
+  let e1 = nums1.length - 1;
+
+  let s2 = 0;
+  let e2 = nums2.length - 1;
+
+  let m1 = Math.floor((s1 + e1) / 2);
+  let m2 = Math.floor((s2 + e2) / 2);
+
+  if(nums1[m1] > nums2[m2]) {
+    
+  }
+};
+
 console.log(findMedianSortedArrays([1, 3], [2]));
 console.log(findMedianSortedArrays([1, 2], [3, 4]));
