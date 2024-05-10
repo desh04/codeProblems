@@ -39,20 +39,46 @@ var findMedianSortedArrays = function (nums1, nums2) {
   }
 };
 
+// [a1, a2, a3, a4, a5]
+// [b1, b2, b3, b4];
 var findMedianSortedArrays2 = function (nums1, nums2) {
-  let s1 = 0;
-  let e1 = nums1.length - 1;
+  // let s1 = 0;
+  // let e1 = nums1.length - 1;
 
-  let s2 = 0;
-  let e2 = nums2.length - 1;
+  // let s2 = 0;
+  // let e2 = nums2.length - 1;
 
-  let m1 = Math.floor((s1 + e1) / 2);
-  let m2 = Math.floor((s2 + e2) / 2);
+  // let m1 = Math.floor((s1 + e1) / 2);
+  // let m2 = Math.floor((s2 + e2) / 2);
 
-  if(nums1[m1] > nums2[m2]) {
-    
+  // if (nums1[m1] > nums2[m2]) {
+  // }
+
+  let l1 = nums1.length;
+  let l2 = nums2.length;
+
+  let totalLenght = l1 + l2;
+
+  const middle =
+    (l1 + l2) % 2 === 0
+      ? [Math.floor((l1 + l2) / 2) - 1, Math.floor((l1 + l2) / 2)]
+      : [Math.floor((l1 + l2) / 2)];
+
+  let s1 = 0,
+    s2 = 0,
+    e1,
+    e2;
+
+  e1 = Math.floor(l1 / 2) - 1;
+  e2 = middle[0] - e1 - 1;
+
+  console.log({ middle, e1, e2 });
+  let isError = true;
+
+  while (isError) {
+    isError = false;
   }
 };
 
-console.log(findMedianSortedArrays([1, 3], [2]));
-console.log(findMedianSortedArrays([1, 2], [3, 4]));
+console.log(findMedianSortedArrays2([1, 3], [2]));
+console.log(findMedianSortedArrays2([1, 2], [3, 4]));
