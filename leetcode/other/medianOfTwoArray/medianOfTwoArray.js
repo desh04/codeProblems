@@ -64,21 +64,92 @@ var findMedianSortedArrays2 = function (nums1, nums2) {
       ? [Math.floor((l1 + l2) / 2) - 1, Math.floor((l1 + l2) / 2)]
       : [Math.floor((l1 + l2) / 2)];
 
-  let s1 = 0,
-    s2 = 0,
-    e1,
-    e2;
+  let e1, e2;
 
-  e1 = Math.floor(l1 / 2) - 1;
-  e2 = middle[0] - e1 - 1;
+  e1 = Math.max(Math.floor(l1 / 2) - 1, 0);
+  e2 = Math.max(middle[0] - e1 - 1, 0);
 
-  console.log({ middle, e1, e2 });
   let isError = true;
 
   while (isError) {
+    if (nums1[e1] > nums2[e2 + 1]) {
+      --e1;
+      ++e2;
+      continue;
+    }
+    if (nums2[e2] > nums1[e1 + 1]) {
+      --e2;
+      ++e1;
+      continue;
+    }
     isError = false;
+  }
+
+  // console.log({ e1, e2 });
+
+  if (totalLenght % 2 === 0) {
+    let n1 = Math.max(
+      e1 >= 0 ? nums1[e1] : -Infinity,
+      e2 >= 0 ? nums2[e2] : -Infinity
+    );
+    let n2 = Math.min(
+      e1 + 1 >= 0 && e1 + 1 < nums1.length ? nums1[e1 + 1] : Infinity,
+      e2 + 1 >= 0 && e2 + 1 < nums2.length ? nums2[e2 + 1] : Infinity
+    );
+    return (n1 + n2) / 2;
+  } else {
+    let median = Math.max(
+      e1 >= 0 ? nums1[e1] : -Infinity,
+      e2 >= 0 ? nums2[e2] : -Infinity
+    );
+    // console.log('coming here', median);
+    return median;
   }
 };
 
-console.log(findMedianSortedArrays2([1, 3], [2]));
-console.log(findMedianSortedArrays2([1, 2], [3, 4]));
+var findMedianSortedArrays3 = function (nums1, nums2) {
+  let A, B, i, j;
+  let total = nums1.length + nums2.length;
+  let half = Math.floor(total / 2);
+  if (nums1.length <= nums2.length) {
+    A = nums1;
+    B = nums2;
+  } else {
+    A = nums2;
+    B = nums1;
+  }
+
+  let l = 0;
+  let r = A.length - 1;
+
+  while (true) {
+    i = Math.floor((l + r) / 2); // mid point for A
+    j = half - 1 - i - 1; // for B
+    let Aleft = i >= 0 ? A[i] : -Infinity;
+    let Aright = i + 1 < A.length ? A[i + 1] : Infinity;
+    let Bleft = j >= 0 ? B[j] : -Infinity;
+    let Bright = j + 1 < B.length ? B[j + 1] : Infinity;
+
+    // partiton correction
+    if (Aleft <= Bright && Bleft <= Aright) {
+      if (total % 2) {
+        //Odd
+        return Math.min(Aright, Bright);
+      } else {
+        //Even
+        return (Math.max(Aleft, Bleft) + Math.min(Aright, Bright)) / 2;
+      }
+    } else if (Aleft > Bright) {
+      // reduce the size of partition form the A
+      r = i - 1;
+    } else {
+      // increasing the partition
+      l = i + 1;
+    }
+  }
+};
+
+// console.log(findMedianSortedArrays3([2], []));
+// console.log(findMedianSortedArrays3([], [1]));
+// console.log(findMedianSortedArrays3([1, 3], [2]));
+console.log(findMedianSortedArrays3([1, 2], [3, 4]));
