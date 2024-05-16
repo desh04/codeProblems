@@ -13,7 +13,7 @@ public class test {
             System.out.println(e);
         }
 
-        System.out.println(number);
-        System.out.println(kya);
+        System.out.println(Character.getNumericValue('n'));
+        // System.out.println(kya);
     }
 }
