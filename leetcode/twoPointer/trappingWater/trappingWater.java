@@ -62,6 +62,10 @@ class Solution {
 
         return water;
     }
+
+    public int trappingWaterTwoPointer(int[] waterColumn) {
+        
+    }
 }
 
 public class trappingWater {
