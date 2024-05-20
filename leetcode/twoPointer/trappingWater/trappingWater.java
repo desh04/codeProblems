@@ -2,6 +2,7 @@
 
 class Solution {
     public int trapWater(int[] waterColumn) {
+        // complexcity O(N^2)
         if (waterColumn.length <= 2) {
             // will require more that 2 column
             return 0;
@@ -64,7 +65,51 @@ class Solution {
     }
 
     public int trappingWaterTwoPointer(int[] waterColumn) {
-        
+        int p1 = 0;
+        int p2 = waterColumn.length - 1;
+
+        int left_max = 0;
+        int right_max = 0;
+
+        int trappedWater = 0;
+
+        System.out.println(p1 + p2);
+
+        // <= cause at last both could be at same place and we will want to calculate
+        // for that point also
+        while (p1 <= p2) {
+            if (left_max <= right_max) {
+                System.out.println("p1 enter -----> " + p1);
+                // minimum of the left_max and right_max,
+                // in this if condition block left max will always be less of equal to the right
+                // max
+                trappedWater += (left_max - waterColumn[p1]) > 0 ? (left_max - waterColumn[p1]) : 0;
+
+                if (waterColumn[p1] > left_max) {
+                    left_max = waterColumn[p1];
+                }
+
+                ++p1;
+                System.out.println("p1 EXIT -----> " + p1);
+                continue;
+            }
+
+            if (left_max > right_max) {
+                System.out.println("went to second loop");
+                trappedWater += (right_max - waterColumn[p2]) > 0 ? (right_max - waterColumn[p2]) : 0;
+
+                if (waterColumn[p2] > right_max) {
+                    right_max = waterColumn[p2];
+                }
+
+                --p2;
+                continue;
+            }
+            System.out.println("went till last");
+
+        }
+
+        return trappedWater;
     }
 }
 
@@ -72,8 +117,9 @@ public class trappingWater {
     public static void main(String[] args) {
         Solution sol = new Solution();
 
-        int[] firstSet = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+        int[] firstSet = { 4, 2, 0, 3, 2, 5 };
 
         System.out.println("ANSWER ++>" + sol.trapWater(firstSet));
+        System.out.println("ANSWER ++>" + sol.trappingWaterTwoPointer(firstSet));
     }
 }
