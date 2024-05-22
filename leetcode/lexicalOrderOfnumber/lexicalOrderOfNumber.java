@@ -7,8 +7,8 @@ class Solution {
     public List<Integer> lexicalOrder(int n) {
         List<Integer> result = new ArrayList<>();
 
-        for(int i = 1; i <= n ; i++) {
-            
+        for (int i = 1; i <= n; i++) {
+            System.out.println(i);
         }
 
         return result;
