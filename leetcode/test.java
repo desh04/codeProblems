@@ -4,6 +4,16 @@ public class test {
 
     public static void main(String a[]) {
         int result = 12 / 10;
-        System.out.println("s".substring(0, 0));
+        int number = 12312312;
+        int n = 2147483647;
+        int kya = 0;
+        try {
+            kya = 1 * n;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println(Character.getNumericValue('n'));
+        // System.out.println(kya);
     }
 }
