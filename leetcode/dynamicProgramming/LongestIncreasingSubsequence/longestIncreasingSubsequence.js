@@ -1,6 +1,6 @@
 // Time Complexity: O(n), Space Complexity: O(1)
+// ! this is wrong cause this is checking only consecutive longest sequence
 function twoPointer(arr) {
-  // ! this is wrong cause this is checking only consecutive longest sequence
   if (!arr.length) {
     return 0;
   }
